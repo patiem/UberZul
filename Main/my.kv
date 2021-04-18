@@ -133,7 +133,7 @@
 <MainWindow>:
     n: n
     email: email
-    created:created
+    created: created
 
     FloatLayout:
         Label:
@@ -167,7 +167,7 @@
             size_hint:0.1,0.1
             text: "Szukam"
             on_release:
-                app.root.current = "login"
+                app.root.current = "noticeList"
                 root.manager.transition.direction = "down"
 
         Button:
@@ -178,3 +178,27 @@
                 app.root.current = "login"
                 root.manager.transition.direction = "down"
 
+<NoticeListWindow>:
+    n: n
+    opis: opis
+
+    FloatLayout:
+        Label:
+            id: n
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+            text: "List of notices: "
+
+        Label:
+            id: opis
+            pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: ""
+
+        Button:
+            pos_hint:{"x":0.5, "y": 0.2}
+            size_hint:0.3,0.1
+            text: "Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "down"
