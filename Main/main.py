@@ -72,6 +72,16 @@ class MainWindow(Screen):
         self.created.text = "Created On: " + created
 
 
+class NoticeListWindow(Screen):
+    n = ObjectProperty(None)
+    opis = ObjectProperty(None)
+    current = ""
+
+    def on_enter(self, *args):
+        self.n.text = "List of notices: "
+        self.opis.text = "Tu bedzie lista ogloszen"
+
+
 class WindowManager(ScreenManager):
     pass
 
@@ -96,7 +106,9 @@ kv = Builder.load_file("my.kv")
 sm = WindowManager()
 db = DataBase("users.txt")
 
-screens = [LoginWindow(name="login"), CreateAccountWindow(name="create"),MainWindow(name="main")]
+screens = [LoginWindow(name="login"), CreateAccountWindow(name="create"), MainWindow(name="main"),
+           NoticeListWindow(name="noticeList")]
+
 for screen in screens:
     sm.add_widget(screen)
 
