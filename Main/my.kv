@@ -155,9 +155,26 @@
             text: "Created: "
 
         Button:
-            pos_hint:{"x":0.2, "y": 0.1}
-            size_hint:0.6,0.2
+            pos_hint:{"x":0.5, "y": 0.2}
+            size_hint:0.3,0.1
             text: "Log Out"
             on_release:
                 app.root.current = "login"
                 root.manager.transition.direction = "down"
+
+        Button:
+            pos_hint:{"x":0.2, "y": 0.05}
+            size_hint:0.1,0.1
+            text: "Szukam"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+
+        Button:
+            pos_hint:{"x":0.8, "y": 0.05}
+            size_hint:0.1,0.1
+            text: "Ogłaszam"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+
