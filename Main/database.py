@@ -68,7 +68,6 @@ class Notice:
             id, name, user, job_type, price_value = line.strip().split(";")
             notices[int(id)] = (name, user, job_type, price_value)
         self.file.close()
-        print(notices)
         return notices
 
     def get_notice(self, id):
@@ -81,7 +80,6 @@ class Notice:
         return self.notices
 
     def add_notice(self, namee, whom, job_type, price_value):
-        print(list(self.notices.keys()))
         id = max(list(self.notices.keys()))
         self.notices[id+1] = (namee.strip(), whom.strip(), job_type.strip(), price_value.strip())
         self.save()

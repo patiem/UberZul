@@ -107,7 +107,7 @@ class NoticeListWindow(Screen):
         self.opis.text = "Tu bedzie lista ogloszen"
         nt.load()
         notices = nt.get_notices()
-        str_notices = [key + "- kategoria: " + value[2] + ", co: " + value[0] + ", kto: " + value[1] + ", za ile: " + value[3] for key, value in notices.items()]
+        str_notices = [str(key) + "- kategoria: " + value[2] + ", co: " + value[0] + ", kto: " + value[1] + ", za ile: " + value[3] for key, value in notices.items()]
         self.lista.text = "\n".join(str_notices)
 
 
