@@ -2,3 +2,4 @@
 2;Obrac ziemniaki;Krysia;Gastronomia;1 malpka
 3;a;a;a;a
 4;Kupic zlom;Janusz;zakupy;2 wina
+5;Uczesac psa;Lola;spa;1 wino
