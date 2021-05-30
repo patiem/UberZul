@@ -47,3 +47,34 @@ class DataBase:
     @staticmethod
     def get_date():
         return str(datetime.datetime.now()).split(" ")[0]
+
+
+class Notice:
+    """ Representation of a notice- entity added by the user to the database
+    """
+    def __init__(self, name=None, whom=None, job_type=None, price_value=None):
+        self.name = name
+        self.whom = whom
+        self.job_type = job_type
+        self.price_value = price_value
+        self.notices = None
+        self.file = None
+
+    def load(self):
+        self.file = open("notice.txt", "r")
+        self.notices = {}
+
+        for line in self.file:
+            id, name, user, job_type, price_value = line.strip().split(";")
+            self.notices[id] = (name, user, job_type, price_value)
+
+        self.file.close()
+
+    def get_notice(self, id):
+        if id in self.notices:
+            return self.notices[id]
+        else:
+            return -1
+
+    def get_notices(self):
+        return self.notices

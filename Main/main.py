@@ -5,17 +5,9 @@ from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from Main.database import DataBase
+from Main.database import Notice
+from kivy.core.window import Window
 
-
-class Notice:
-    """ Representation of a notice- entity added by the user to the database
-    """
-
-    def __init__(self, name, whom=None, job_type=None, price_value=None):
-        self.name = name
-        self.whom = whom
-        self.job_type = job_type
-        self.price_value = price_value
 
 
 class CreateAccountWindow(Screen):
@@ -106,11 +98,17 @@ class CreateNoticeWindow(Screen):
 class NoticeListWindow(Screen):
     n = ObjectProperty(None)
     opis = ObjectProperty(None)
+    lista = ObjectProperty(None)
     current = ""
 
     def on_enter(self, *args):
         self.n.text = "List of notices: "
         self.opis.text = "Tu bedzie lista ogloszen"
+        nt.load()
+        notices = nt.get_notices()
+        str_notices = [key + "- kategoria: " + value[2] + ", co: " + value[0] + ", kto: " + value[1] + ", za ile: " + value[3] for key, value in notices.items()]
+        self.lista.text = "\n".join(str_notices)
+
 
 
 class WindowManager(ScreenManager):
@@ -136,6 +134,7 @@ kv = Builder.load_file("my.kv")
 
 sm = WindowManager()
 db = DataBase("users.txt")
+nt = Notice()
 
 screens = [LoginWindow(name="login"), CreateAccountWindow(name="create"), MainWindow(name="main"),
            NoticeListWindow(name="noticeList"), CreateNoticeWindow(name="createNotice")]

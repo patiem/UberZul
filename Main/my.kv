@@ -181,6 +181,7 @@
 <NoticeListWindow>:
     n: n
     opis: opis
+    lista: lista
 
     FloatLayout:
         Label:
@@ -192,6 +193,12 @@
         Label:
             id: opis
             pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: ""
+
+        Label:
+            id: lista
+            pos_hint:{"x": 0.1, "top":0.5}
             size_hint:0.8, 0.2
             text: ""
 
