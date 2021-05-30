@@ -81,15 +81,16 @@ class CreateNoticeWindow(Screen):
     whom = ObjectProperty(None)
     job_type = ObjectProperty(None)
     price_value = ObjectProperty(None)
+
     def submit(self):
         if self.namee.text != "" and self.job_type.text != "" and self.price_value.text != "" and self.whom.text != "":
-            #db.add_notice(Notice(namee, whom, job_type, price_value))
+            nt.add_notice(self.namee.text, self.whom.text, self.job_type.text, self.price_value.text)
             self.reset()
         else:
             invalidForm()
 
     def reset(self):
-        self.name.text = ""
+        self.namee.text = ""
         self.whom.text = ""
         self.job_type.text = ""
         self.price_value.text = ""

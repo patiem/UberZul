@@ -57,18 +57,19 @@ class Notice:
         self.whom = whom
         self.job_type = job_type
         self.price_value = price_value
-        self.notices = None
+        self.notices = self.load()
         self.file = None
 
     def load(self):
         self.file = open("notice.txt", "r")
-        self.notices = {}
+        notices = {}
 
         for line in self.file:
             id, name, user, job_type, price_value = line.strip().split(";")
-            self.notices[id] = (name, user, job_type, price_value)
-
+            notices[int(id)] = (name, user, job_type, price_value)
         self.file.close()
+        print(notices)
+        return notices
 
     def get_notice(self, id):
         if id in self.notices:
@@ -78,3 +79,15 @@ class Notice:
 
     def get_notices(self):
         return self.notices
+
+    def add_notice(self, namee, whom, job_type, price_value):
+        print(list(self.notices.keys()))
+        id = max(list(self.notices.keys()))
+        self.notices[id+1] = (namee.strip(), whom.strip(), job_type.strip(), price_value.strip())
+        self.save()
+        return 1
+
+    def save(self):
+        with open("notice.txt", "w") as f:
+            for notice in self.notices:
+                f.write(str(notice) + ";" + self.notices[notice][0] + ";" + self.notices[notice][1] + ";" + self.notices[notice][2] + ";" + self.notices[notice][3] +"\n")

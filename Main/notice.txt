@@ -1,2 +1,3 @@
 1;Podrapac po plecach;Grubas;Pielegnacja;2 pifka
 2;Obrac ziemniaki;Krysia;Gastronomia;1 malpka
+3;a;a;a;a
