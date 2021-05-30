@@ -6,6 +6,15 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from Main.database import DataBase
 
+class Notice:
+    """ Representation of a notice- entity added by the user to the database
+    """
+    def __init__(self, name, whom=None, job_type=None, price_value=None):
+        self.name = name
+        self.whom = whom
+        self.job_type = job_type
+        self.price_value = price_value
+
 
 class CreateAccountWindow(Screen):
     namee = ObjectProperty(None)
@@ -70,6 +79,9 @@ class MainWindow(Screen):
         self.n.text = "Account Name: " + name
         self.email.text = "Email: " + self.current
         self.created.text = "Created On: " + created
+
+class CreateNoticeWindow(Screen):
+    pass
 
 
 class NoticeListWindow(Screen):
