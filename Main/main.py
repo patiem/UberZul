@@ -6,9 +6,11 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from Main.database import DataBase
 
+
 class Notice:
     """ Representation of a notice- entity added by the user to the database
     """
+
     def __init__(self, name, whom=None, job_type=None, price_value=None):
         self.name = name
         self.whom = whom
@@ -22,7 +24,8 @@ class CreateAccountWindow(Screen):
     password = ObjectProperty(None)
 
     def submit(self):
-        if self.namee.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
+        if self.namee.text != "" and self.email.text != "" and self.email.text.count(
+                "@") == 1 and self.email.text.count(".") > 0:
             if self.password != "":
                 db.add_user(self.email.text, self.password.text, self.namee.text)
 
@@ -80,8 +83,24 @@ class MainWindow(Screen):
         self.email.text = "Email: " + self.current
         self.created.text = "Created On: " + created
 
+
 class CreateNoticeWindow(Screen):
-    pass
+    namee = ObjectProperty(None)
+    whom = ObjectProperty(None)
+    job_type = ObjectProperty(None)
+    price_value = ObjectProperty(None)
+    def submit(self):
+        if self.namee.text != "" and self.job_type.text != "" and self.price_value.text != "" and self.whom.text != "":
+            #db.add_notice(Notice(namee, whom, job_type, price_value))
+            self.reset()
+        else:
+            invalidForm()
+
+    def reset(self):
+        self.name.text = ""
+        self.whom.text = ""
+        self.job_type.text = ""
+        self.price_value.text = ""
 
 
 class NoticeListWindow(Screen):
@@ -100,15 +119,15 @@ class WindowManager(ScreenManager):
 
 def invalidLogin():
     pop = Popup(title='Invalid Login',
-                  content=Label(text='Invalid username or password.'),
-                  size_hint=(None, None), size=(400, 400))
+                content=Label(text='Invalid username or password.'),
+                size_hint=(None, None), size=(400, 400))
     pop.open()
 
 
 def invalidForm():
     pop = Popup(title='Invalid Form',
-                  content=Label(text='Please fill in all inputs with valid information.'),
-                  size_hint=(None, None), size=(400, 400))
+                content=Label(text='Please fill in all inputs with valid information.'),
+                size_hint=(None, None), size=(400, 400))
 
     pop.open()
 
@@ -119,7 +138,7 @@ sm = WindowManager()
 db = DataBase("users.txt")
 
 screens = [LoginWindow(name="login"), CreateAccountWindow(name="create"), MainWindow(name="main"),
-           NoticeListWindow(name="noticeList")]
+           NoticeListWindow(name="noticeList"), CreateNoticeWindow(name="createNotice")]
 
 for screen in screens:
     sm.add_widget(screen)
